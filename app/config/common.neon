@@ -1,0 +1,45 @@
+parameters:
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+extensions:
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+
+	dbal: Nettrine\DBAL\DI\DbalExtension
+	dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
+
+	orm: Nettrine\ORM\DI\OrmExtension
+	orm.console: Nettrine\ORM\DI\OrmConsoleExtension
+	orm.annotation: Nettrine\ORM\DI\OrmAnnotationsExtension
+
+services:
+	# commands
+	- App\Console\CreateUserCommand
+
+	# extensions && others
+	router: App\Router\RouterFactory::createRouter
+	authenticator: App\Service\UserManager
+
+console:
+	name: CRM | Znamý web
+	version: '1.0'
+	catchExceptions: true
+	autoExit: false
+	lazy: true
+	url: https://www.znamyweb.cz
+
+orm.annotation:
+	excludePaths: []
+	ignore:
+		- App\Model\Entity\BaseEntity
+	defaultCache: filesystem
+	paths:
+		- %appDir%/Model/Entity

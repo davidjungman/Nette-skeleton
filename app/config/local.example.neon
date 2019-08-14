@@ -1,0 +1,16 @@
+parameters:
+
+constants:
+		ROOT_NAME: "Name"
+		ROOT_SURNAME: "Surname"
+		ROOT_EMAIL: "your@email.com"
+
+dbal:
+	debug:
+		panel: %debugMode%
+	connection:
+		host: localhost
+		driver: mysqli
+		dbname: crm
+		user: admin
+		password: password
